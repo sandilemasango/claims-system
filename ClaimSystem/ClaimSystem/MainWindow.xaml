@@ -1,0 +1,331 @@
+﻿<Window x:Class="ClaimSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Contract Monthly Claim System" 
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#f5f6fa">
+    <Window.Resources>
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#4a90e2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#357abd"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" Opacity="0.1" BlurRadius="10"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar Navigation -->
+        <Border Grid.Column="0" Background="#2c3e50">
+            <StackPanel>
+                <TextBlock Text="CMCS" 
+                          Foreground="White" 
+                          FontSize="24" 
+                          FontWeight="Bold" 
+                          Margin="20,30,20,40"
+                          HorizontalAlignment="Center"/>
+
+                <Button x:Name="BtnLecturerView" 
+                        Content="📝 Submit Claim" 
+                        Style="{StaticResource ModernButton}"
+                        Background="Transparent"
+                        Margin="10,5"
+                        Click="BtnLecturerView_Click"/>
+
+                <Button x:Name="BtnTrackClaims" 
+                        Content="📊 Track Claims" 
+                        Style="{StaticResource ModernButton}"
+                        Background="Transparent"
+                        Margin="10,5"
+                        Click="BtnTrackClaims_Click"/>
+
+                <Button x:Name="BtnManagerView" 
+                        Content="👨‍💼 Manage Claims" 
+                        Style="{StaticResource ModernButton}"
+                        Background="Transparent"
+                        Margin="10,5"
+                        Click="BtnManagerView_Click"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="MainContent" Margin="20">
+
+                <!-- Lecturer Claim Submission View -->
+                <StackPanel x:Name="LecturerView" Visibility="Visible">
+                    <TextBlock Text="Submit New Claim" 
+                              FontSize="28" 
+                              FontWeight="Bold" 
+                              Foreground="#2c3e50"
+                              Margin="0,0,0,20"/>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                                    <TextBlock Text="Hours Worked" 
+                                              FontWeight="SemiBold" 
+                                              Margin="0,0,0,5"/>
+                                    <TextBox x:Name="TxtHours" 
+                                             Text="0" 
+                                             Padding="10" 
+                                             FontSize="14"
+                                             BorderThickness="1"
+                                             BorderBrush="#ddd"
+                                             PreviewTextInput="NumberValidationTextBox"/>
+
+                                    <TextBlock Text="Hourly Rate ($)" 
+                                              FontWeight="SemiBold" 
+                                              Margin="0,15,0,5"/>
+                                    <TextBox x:Name="TxtHourlyRate" 
+                                             Text="0" 
+                                             Padding="10" 
+                                             FontSize="14"
+                                             BorderThickness="1"
+                                             BorderBrush="#ddd"
+                                             PreviewTextInput="NumberValidationTextBox"/>
+
+                                    <TextBlock Text="Total Amount" 
+                                              FontWeight="SemiBold" 
+                                              Margin="0,15,0,5"/>
+                                    <TextBlock x:Name="TxtTotalAmount" 
+                                               Text="$0.00" 
+                                               FontSize="16" 
+                                               FontWeight="Bold"
+                                               Foreground="#27ae60"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                    <TextBlock Text="Additional Notes" 
+                                              FontWeight="SemiBold" 
+                                              Margin="0,0,0,5"/>
+                                    <TextBox x:Name="TxtNotes" 
+                                             AcceptsReturn="True" 
+                                             TextWrapping="Wrap" 
+                                             Height="100"
+                                             Padding="10" 
+                                             FontSize="14"
+                                             BorderThickness="1"
+                                             BorderBrush="#ddd"
+                                             VerticalScrollBarVisibility="Auto"/>
+
+                                    <TextBlock Text="Supporting Documents" 
+                                              FontWeight="SemiBold" 
+                                              Margin="0,15,0,5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="BtnBrowseFile" 
+                                                Content="📎 Browse" 
+                                                Click="BtnBrowseFile_Click"
+                                                Style="{StaticResource ModernButton}"
+                                                Padding="15,8"/>
+                                        <TextBlock x:Name="TxtFileName" 
+                                                   Text="No file selected" 
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="#7f8c8d"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Allowed: PDF, DOCX, XLSX (Max 5MB)" 
+                                              FontSize="11" 
+                                              Foreground="#95a5a6"
+                                              Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Button x:Name="BtnSubmitClaim" 
+                                    Content="🚀 Submit Claim" 
+                                    Click="BtnSubmitClaim_Click"
+                                    Style="{StaticResource ModernButton}"
+                                    Background="#27ae60"
+                                    Margin="0,20,0,0"
+                                    HorizontalAlignment="Right"
+                                    Padding="30,12"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Track Claims View -->
+                <StackPanel x:Name="TrackClaimsView" Visibility="Collapsed">
+                    <TextBlock Text="Track Your Claims" 
+                              FontSize="28" 
+                              FontWeight="Bold" 
+                              Foreground="#2c3e50"
+                              Margin="0,0,0,20"/>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Claim History" 
+                                      FontSize="18" 
+                                      FontWeight="Bold" 
+                                      Margin="0,0,0,15"/>
+
+                            <ListView x:Name="LvClaims" 
+                                      Height="300"
+                                      BorderThickness="0">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Date" Width="100" 
+                                                       DisplayMemberBinding="{Binding Date}"/>
+                                        <GridViewColumn Header="Hours" Width="80" 
+                                                       DisplayMemberBinding="{Binding Hours}"/>
+                                        <GridViewColumn Header="Amount" Width="100" 
+                                                       DisplayMemberBinding="{Binding Amount}"/>
+                                        <GridViewColumn Header="Status" Width="120">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Border Background="{Binding StatusColor}" 
+                                                            CornerRadius="10" 
+                                                            Padding="5,2">
+                                                        <TextBlock Text="{Binding Status}" 
+                                                                   Foreground="White" 
+                                                                   FontWeight="SemiBold"
+                                                                   HorizontalAlignment="Center"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="Documents" Width="100" 
+                                                       DisplayMemberBinding="{Binding Documents}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Manager View -->
+                <StackPanel x:Name="ManagerView" Visibility="Collapsed">
+                    <TextBlock Text="Manage Claims" 
+                              FontSize="28" 
+                              FontWeight="Bold" 
+                              Foreground="#2c3e50"
+                              Margin="0,0,0,20"/>
+
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Pending Claims for Approval" 
+                                      FontSize="18" 
+                                      FontWeight="Bold" 
+                                      Margin="0,0,0,15"/>
+
+                            <ItemsControl x:Name="IcPendingClaims">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="#f8f9fa" 
+                                                CornerRadius="8" 
+                                                Padding="15" 
+                                                Margin="0,0,0,10"
+                                                BorderThickness="1"
+                                                BorderBrush="#e9ecef">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Grid.Column="0">
+                                                    <TextBlock Text="{Binding LecturerName}" 
+                                                              FontWeight="Bold" 
+                                                              FontSize="16"/>
+                                                    <TextBlock Text="{Binding Date}" 
+                                                              Foreground="#6c757d"/>
+                                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                                        <TextBlock Text="Hours: " 
+                                                                  FontWeight="SemiBold"/>
+                                                        <TextBlock Text="{Binding Hours}"/>
+                                                        <TextBlock Text=" | Rate: $" 
+                                                                  FontWeight="SemiBold" 
+                                                                  Margin="10,0,0,0"/>
+                                                        <TextBlock Text="{Binding HourlyRate}"/>
+                                                        <TextBlock Text=" | Total: $" 
+                                                                  FontWeight="SemiBold" 
+                                                                  Margin="10,0,0,0"/>
+                                                        <TextBlock Text="{Binding TotalAmount}" 
+                                                                  Foreground="#27ae60"
+                                                                  FontWeight="Bold"/>
+                                                    </StackPanel>
+                                                    <TextBlock Text="{Binding Notes}" 
+                                                              Margin="0,5,0,0"
+                                                              TextWrapping="Wrap"/>
+                                                    <TextBlock Text="{Binding DocumentInfo}" 
+                                                              Foreground="#4a90e2"
+                                                              Margin="0,5,0,0"/>
+                                                </StackPanel>
+
+                                                <StackPanel Grid.Column="1" 
+                                                           Orientation="Horizontal"
+                                                           VerticalAlignment="Center">
+                                                    <Button Content="✅ Approve" 
+                                                            Click="ApproveClaim_Click"
+                                                            Tag="{Binding ClaimId}"
+                                                            Style="{StaticResource ModernButton}"
+                                                            Background="#27ae60"
+                                                            Margin="5,0"/>
+                                                    <Button Content="❌ Reject" 
+                                                            Click="RejectClaim_Click"
+                                                            Tag="{Binding ClaimId}"
+                                                            Style="{StaticResource ModernButton}"
+                                                            Background="#e74c3c"
+                                                            Margin="5,0"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <TextBlock x:Name="TxtNoPendingClaims" 
+                                       Text="No pending claims available." 
+                                       FontStyle="Italic" 
+                                       Foreground="#95a5a6"
+                                       Margin="0,20,0,0"
+                                       HorizontalAlignment="Center"
+                                       Visibility="Collapsed"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

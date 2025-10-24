@@ -1,0 +1,14 @@
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\bin\Debug\ClaimSystem.exe.config
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\bin\Debug\ClaimSystem.exe
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\bin\Debug\ClaimSystem.pdb
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.csproj.AssemblyReference.cache
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\MainWindow.baml
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\MainWindow.g.cs
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\App.g.cs
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem_MarkupCompile.cache
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.g.resources
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.Properties.Resources.resources
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.csproj.GenerateResource.cache
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.csproj.CoreCompileInputs.cache
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.exe
+C:\Users\RC_Student_Lab\source\repos\ClaimSystem\ClaimSystem\obj\Debug\ClaimSystem.pdb
